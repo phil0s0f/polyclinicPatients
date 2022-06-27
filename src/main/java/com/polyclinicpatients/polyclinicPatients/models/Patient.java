@@ -16,7 +16,18 @@ public class Patient {
     private Date birth_date;
     private String adres;
     private String polis;
-    //TODO: добавить конструкторы
+
+    public Patient() {
+    }
+
+    public Patient(String fio, String male, Date birth_date, String adres, String polis) {
+        this.fio = fio;
+        this.male = male;
+        this.birth_date = birth_date;
+        this.adres = adres;
+        this.polis = polis;
+    }
+
     //TODO: сделать связь с моделью Visit 1:N
     public Long getId_patient() {
         return id_patient;
