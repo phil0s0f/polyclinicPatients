@@ -9,7 +9,6 @@ public class Doctor {
     private Long id_doctor;
     private String fio;
     private String spec;
-    //TODO: добавить конструкторы
     //TODO: сделать связь с моделью Visit 1:N
 
     public Long getId_doctor() {
@@ -33,6 +32,14 @@ public class Doctor {
     }
 
     public void setSpec(String spec) {
+        this.spec = spec;
+    }
+
+    public Doctor() {
+    }
+
+    public Doctor(String fio, String spec) {
+        this.fio = fio;
         this.spec = spec;
     }
 }
