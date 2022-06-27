@@ -1,7 +1,7 @@
 package com.polyclinicpatients.polyclinicPatients.controllers;
 
-import com.polyclinicpatients.polyclinicPatients.models.Post;
-import com.polyclinicpatients.polyclinicPatients.rep.PostRepository;
+import com.polyclinicpatients.polyclinicPatients.models.Doctor;
+import com.polyclinicpatients.polyclinicPatients.rep.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,13 +12,12 @@ import java.util.Optional;
 
 @Controller
 public class DoctorController {
-
     @Autowired
-    private PostRepository postRepository;
+    private DoctorRepository doctorRepository;
     @GetMapping("/doctor")
     public String doctorMain(Model model) {
-        Iterable<Post> posts = postRepository.findAll();
-        model.addAttribute("posts", posts);
+        Iterable<Doctor> doctors = doctorRepository.findAll();
+        model.addAttribute("doctors", doctors);
         return "doctor-main";
     }
     @GetMapping("/doctor/add")
@@ -26,46 +25,45 @@ public class DoctorController {
         return "doctor-add";
     }
     @PostMapping("/doctor/add")
-    public String doctorPostAdd(@RequestParam String tetle,@RequestParam String anounce, @RequestParam String full_text, Model model){
-        Post post = new Post(tetle, anounce, full_text);
-        postRepository.save(post);
+    public String doctorPostAdd(@RequestParam String fio,@RequestParam String spec, Model model){
+        Doctor doctor = new Doctor(fio, spec);
+        doctorRepository.save(doctor);
         return "redirect:/doctor";
     }
     @GetMapping("/doctor/{id}")
     public String doctorDetails(@PathVariable(value = "id") long id, Model model) {
-        if (!postRepository.existsById(id)) {
+        if (!doctorRepository.existsById(id)) {
             return "redirect:/doctor";
         }
-        Optional<Post> post = postRepository.findById(id);
-        ArrayList<Post> res = new ArrayList<>();
-        post.ifPresent(res::add);
-        model.addAttribute("post", res);
+        Optional<Doctor> doctor = doctorRepository.findById(id);
+        ArrayList<Doctor> res = new ArrayList<>();
+        doctor.ifPresent(res::add);
+        model.addAttribute("doctor", res);
         return "doctor-details";
     }
     @GetMapping("/doctor/{id}/edit")
     public String doctorEdit(@PathVariable(value = "id") long id, Model model) {
-        if (!postRepository.existsById(id)) {
+        if (!doctorRepository.existsById(id)) {
             return "redirect:/doctor";
         }
-        Optional<Post> post = postRepository.findById(id);
-        ArrayList<Post> res = new ArrayList<>();
-        post.ifPresent(res::add);
-        model.addAttribute("post", res);
+        Optional<Doctor> doctor = doctorRepository.findById(id);
+        ArrayList<Doctor> res = new ArrayList<>();
+        doctor.ifPresent(res::add);
+        model.addAttribute("doctor", res);
         return "doctor-edit";
     }
     @PostMapping("/doctor/{id}/edit")
-    public String doctorPostUpdate(@PathVariable(value = "id") long id,@RequestParam String tetle,@RequestParam String anounce, @RequestParam String full_text, Model model){
-        Post post = postRepository.findById(id).orElseThrow();
-        post.setTetle(tetle);
-        post.setAnounce(anounce);
-        post.setFull_text(full_text);
-        postRepository.save(post);
+    public String doctorPostUpdate(@PathVariable(value = "id") long id,@RequestParam String fio,@RequestParam String spec, Model model){
+        Doctor doctor = doctorRepository.findById(id).orElseThrow();
+        doctor.setFio(fio);
+        doctor.setSpec(spec);
+        doctorRepository.save(doctor);
         return "redirect:/doctor";
     }
     @PostMapping("/doctor/{id}/remove")
     public String doctorPostDelete(@PathVariable(value = "id") long id, Model model){
-        Post post = postRepository.findById(id).orElseThrow();
-        postRepository.delete(post);
+        Doctor doctor = doctorRepository.findById(id).orElseThrow();
+        doctorRepository.delete(doctor);
         return "redirect:/doctor";
     }
 }
