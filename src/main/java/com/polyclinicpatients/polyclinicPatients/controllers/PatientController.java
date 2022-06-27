@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
 public class PatientController {
-    //TODO: добавить шаблоны для контроллера
+    //TODO: доработать шаблоны для контроллера Patient
     @Autowired
     private PatientRepository patientRepository;
     @GetMapping("/patient")
@@ -29,14 +30,14 @@ public class PatientController {
         return "patient-add";
     }
     @PostMapping("/patient/add")
-    //TODO: изменить RequestParam
-    public String patientPostAdd(@RequestParam String tetle, @RequestParam String anounce, @RequestParam String full_text, Model model){
-        Patient patient = new Patient(tetle, anounce, full_text);
+    public String patientPostAdd(@RequestParam String fio, @RequestParam String male, @RequestParam Date birth_date,  @RequestParam String adres, @RequestParam String polis, Model model){
+        Patient patient = new Patient(fio, male, birth_date,adres, polis);
         patientRepository.save(patient);
         return "redirect:/patient";
     }
     @GetMapping("/patient/{id}")
     public String patientDetails(@PathVariable(value = "id") long id, Model model) {
+        //TODO: возможно это должно быть в контроллере Visit, и показывать данные поциента и насколько он к кому записан
         if (!patientRepository.existsById(id)) {
             return "redirect:/patient";
         }
@@ -58,12 +59,13 @@ public class PatientController {
         return "patient-edit";
     }
     @PostMapping("/patient/{id}/edit")
-    //TODO: изменить RequestParam
-    public String doctorPostUpdate(@PathVariable(value = "id") long id,@RequestParam String tetle,@RequestParam String anounce, @RequestParam String full_text, Model model){
+    public String doctorPostUpdate(@PathVariable(value = "id") long id,@RequestParam String fio, @RequestParam String male, @RequestParam Date birth_date, @RequestParam String adres, @RequestParam String polis, Model model){
         Patient patient = patientRepository.findById(id).orElseThrow();
-        patient.setTetle(tetle);
-        patient.setAnounce(anounce);
-        patient.setFull_text(full_text);
+        patient.setFio(fio);
+        patient.setMale(male);
+        patient.setBirth_date(birth_date);
+        patient.setAdres(adres);
+        patient.setPolis(polis);
         patientRepository.save(patient);
         return "redirect:/patient";
     }
