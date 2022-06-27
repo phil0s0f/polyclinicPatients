@@ -10,11 +10,12 @@
         <header th:insert="blocks/header :: header"></header>
         <main class="flex-shrink-0">
             <div class="container mt-5 mb-5">
-                <br><h1>Редактирование данных о враче</h1><br>
-                <div th:each="el : ${doctor}">
+                <br><h1>Редактирование врачей</h1><br>
+                <div th:each="el : ${post}">
                     <form method="post">
-                        <input type="text" th:value="${el.fio}" name="fio" placeholder="Введите ФИО врача" class="form-control"><br>
-                        <input type="text" th:value="${el.spec}" name="spec" placeholder="Введите специализацию врача" class="form-control"><br>
+                        <input type="text" th:value="${el.tetle}" name="tetle" placeholder="Введите название статьи" class="form-control"><br>
+                        <input type="text" th:value="${el.anounce}" name="anounce" placeholder="Введите анонс статьи" class="form-control"><br>
+                        <textarea name="full_text"  placeholder="Введите полный текст статьи" class="form-control" th:text="${el.full_text}"/><br>
                         <button type="submit" class="btn btn-success">Обновить</button>
                     </form>
                 </div>
