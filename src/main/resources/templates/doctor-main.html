@@ -29,8 +29,8 @@
                             <a th:href="'/doctor/' + ${el.id_doctor} + '/edit'" class="btn btn-warning">Редактировать</a>
                         </td>
                         <td>
-                            <form th:action="'/patient/' + ${el.id_doctor} + '/remove'" method="post">
-                                <button th:href="'/patient/' + ${el.id_doctor} + '/remove'" class="btn btn-warning" type="submit">Удалить</button>
+                            <form th:action="'/doctor/' + ${el.id_doctor} + '/remove'" method="post">
+                                <button th:href="'/doctor/' + ${el.id_doctor} + '/remove'" class="btn btn-warning" type="submit">Удалить</button>
                             </form>
                         </td>
                     </tr>

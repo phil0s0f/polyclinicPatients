@@ -9,10 +9,7 @@ import com.polyclinicpatients.polyclinicPatients.rep.VisitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -34,7 +31,7 @@ public class VisitController {
         return "visit-add";
     }
     @PostMapping("/visit/add")
-    public String patientPostAdd(@RequestParam String date_visit, @RequestParam Patient patient, @RequestParam Doctor doctor, Model model){
+    public String patientPostAdd(@RequestBody String date_visit, @RequestBody Patient patient, @RequestBody Doctor doctor, Model model){
         Visit visit = new Visit(date_visit, patient, doctor);
         visitRepository.save(visit);
         //TODO: доработать контроллер Visit, не работает добавление записи

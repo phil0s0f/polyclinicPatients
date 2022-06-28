@@ -26,11 +26,10 @@
                         <td th:text="${el.male}"/>
                         <td th:text="${el.birth_date}"/>
                         <td>
-                            <!--Возможно это должно быть в контроллере Visit -->
-                            <!--<a th:href="'/patient/' + ${el.id} + '/appointment'">Запись к врачу</a>-->
+                            <a th:href="'/patient/' + ${el.id_patient}" class="btn btn-warning">Подробнее</a>
                         </td>
                         <td>
-                            <a th:href="'/patient/' + ${el.id_patient} + '/edit'" class="btn btn-warning">Редактировать</a><br>
+                            <a th:href="'/patient/' + ${el.id_patient} + '/edit'" class="btn btn-warning">Редактировать</a>
                         </td>
                         <td>
                             <form th:action="'/patient/' + ${el.id_patient} + '/remove'" method="post">

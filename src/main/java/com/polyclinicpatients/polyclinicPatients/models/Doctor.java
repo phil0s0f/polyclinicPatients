@@ -1,10 +1,7 @@
 package com.polyclinicpatients.polyclinicPatients.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "doctor")
@@ -14,6 +11,19 @@ public class Doctor {
     private Long id_doctor;
     private String fio;
     private String spec;
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "patient")
+    private Set<Visit> visits;
+    public Doctor() {
+    }
+    public Doctor(String fio, String spec) {
+        this.fio = fio;
+        this.spec = spec;
+    }
+    public Doctor(String fio, String spec, Set<Visit> visits) {
+        this.fio = fio;
+        this.spec = spec;
+        this.visits = visits;
+    }
     //TODO: сделать связь с моделью Visit 1:N (возможно не нужна)
     public Long getId_doctor() {
         return id_doctor;
@@ -33,10 +43,10 @@ public class Doctor {
     public void setSpec(String spec) {
         this.spec = spec;
     }
-    public Doctor() {
+    public Set<Visit> getVisits() {
+        return visits;
     }
-    public Doctor(String fio, String spec) {
-        this.fio = fio;
-        this.spec = spec;
+    public void setVisits(Set<Visit> visits) {
+        this.visits = visits;
     }
 }
