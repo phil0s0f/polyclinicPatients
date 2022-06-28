@@ -31,7 +31,7 @@ public class VisitController {
         return "visit-add";
     }
     @PostMapping("/visit/add")
-    public String patientPostAdd(@RequestBody String date_visit, @RequestBody Patient patient, @RequestBody Doctor doctor, Model model){
+    public String visitPostAdd(@RequestBody String date_visit, Patient patient, Doctor doctor, Model model){
         Visit visit = new Visit(date_visit, patient, doctor);
         visitRepository.save(visit);
         //TODO: доработать контроллер Visit, не работает добавление записи

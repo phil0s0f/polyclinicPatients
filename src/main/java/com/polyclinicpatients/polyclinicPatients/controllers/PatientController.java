@@ -2,6 +2,7 @@ package com.polyclinicpatients.polyclinicPatients.controllers;
 
 import com.polyclinicpatients.polyclinicPatients.models.Patient;
 import com.polyclinicpatients.polyclinicPatients.rep.PatientRepository;
+import com.polyclinicpatients.polyclinicPatients.rep.VisitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,8 @@ public class PatientController {
     //TODO: доработать шаблоны для контроллера Patient
     @Autowired
     private PatientRepository patientRepository;
+    @Autowired
+    private VisitRepository visitRepository;
     @GetMapping("/patient")
     public String patientMain(Model model) {
         Iterable<Patient> patients = patientRepository.findAll();

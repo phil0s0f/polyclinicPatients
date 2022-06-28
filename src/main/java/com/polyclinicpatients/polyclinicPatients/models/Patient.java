@@ -15,8 +15,9 @@ public class Patient {
     private String birth_date;
     private String adres;
     private String polis;
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "patient")
+    /*@OneToMany(fetch = FetchType.EAGER,mappedBy = "patient")
     private Set<Visit> visits;
+     */
     public Patient() {
     }
     public Patient(String fio, String male, String birth_date, String adres, String polis) {
@@ -26,21 +27,8 @@ public class Patient {
         this.adres = adres;
         this.polis = polis;
     }
-    public Patient(String fio, String male, String birth_date, String adres, String polis, Set<Visit> visits) {
-        this.fio = fio;
-        this.male = male;
-        this.birth_date = birth_date;
-        this.adres = adres;
-        this.polis = polis;
-        this.visits = visits;
-    }
     //TODO: сделать связь с моделью Visit 1:N
-    public Set<Visit> getVisits() {
-        return visits;
-    }
-    public void setVisits(Set<Visit> visits) {
-        this.visits = visits;
-    }
+
     public Long getId_patient() {
         return id_patient;
     }
