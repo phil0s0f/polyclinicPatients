@@ -10,13 +10,31 @@
         <header th:insert="blocks/header :: header"></header>
         <main class="flex-shrink-0">
             <div class="container mt-5">
-                <h1>Список врачей</h1>
-                <div th:each="el : ${doctors}" class="alert alert-info mt-2">
-                    <h3 th:text="${el.fio}"/>
-                    <p th:text="${el.spec}"/>
-                    <!-- подумать над ссылками-->
-                    <a th:href="'/doctor/' + ${el.id}" class="btn btn-warning">Подробнее</a>
-                </div>
+                <br><h1>Список врачей</h1>
+                <table class="table">
+                    <tr>
+                        <th>ФИО</th>
+                        <th>специализация</th>
+                        <th>Подробнее</th>
+                        <th>Изменить</th>
+                        <th>Удалить</th>
+                    </tr>
+                    <tr th:each="el : ${doctors}">
+                        <td th:text="${el.fio}"/>
+                        <td th:text="${el.spec}"/>
+                        <td>
+                            <a th:href="'/doctor/' + ${el.id_doctor}" class="btn btn-warning">Подробнее</a>
+                        </td>
+                        <td>
+                            <a th:href="'/doctor/' + ${el.id_doctor} + '/edit'" class="btn btn-warning">Редактировать</a>
+                        </td>
+                        <td>
+                            <form th:action="'/patient/' + ${el.id_doctor} + '/remove'" method="post">
+                                <button th:href="'/patient/' + ${el.id_doctor} + '/remove'" class="btn btn-warning" type="submit">Удалить</button>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </main>
         <footer class="footer mt-auto py-3 bg-light" th:insert="blocks/footer :: footer"></footer>

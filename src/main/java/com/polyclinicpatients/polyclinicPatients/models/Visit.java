@@ -1,65 +1,61 @@
 package com.polyclinicpatients.polyclinicPatients.models;
 
-import javax.persistence.*;
-import java.util.Collection;
-import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "visit")
 public class Visit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_visit;
-    private Long id_patient;
+    //private Long id_patient;
     //private Long id_doctor;
+    private String date_visit;
+    @ManyToOne(fetch = FetchType.EAGER)
+    //@JoinColumn(name = "id_patient")
+    private Patient patient;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Doctor doctor;
+    public Visit() {
+    }
+
+    public Visit(String date_visit, Patient patient, Doctor doctor) {
+        this.date_visit = date_visit;
+        this.patient = patient;
+        this.doctor = doctor;
+    }
+
     //TODO: добавить конструкторы
     //TODO: сделать связь с моделями Patient, Doctor N:1
     public Long getId_visit() {
         return id_visit;
     }
-
     public void setId_visit(Long id_visit) {
         this.id_visit = id_visit;
     }
 
-    public Long getId_patient() {
-        return id_patient;
-    }
-
-    public void setId_patient(Long id_patient) {
-        this.id_patient = id_patient;
-    }
-/*
-    public Long getId_doctor() {
-        return id_doctor;
-    }
-
-    public void setId_doctor(Long id_doctor) {
-        this.id_doctor = id_doctor;
-    }
-
- */
-
-    public Date getDate_visit() {
+    public String getDate_visit() {
         return date_visit;
     }
-
-    public void setDate_visit(Date date_visit) {
+    public void setDate_visit(String date_visit) {
         this.date_visit = date_visit;
     }
-
-    private Date date_visit;
-    /*@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "id_patient", nullable = false)
-    private Patient patient;
-
     public Patient getPatient() {
         return patient;
     }
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
-    */
-
-
-
+    public Doctor getDoctor() {
+        return doctor;
+    }
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
 }

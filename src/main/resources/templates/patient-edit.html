@@ -10,16 +10,17 @@
         <header th:insert="blocks/header :: header"></header>
         <main class="flex-shrink-0">
             <div class="container mt-5 mb-5">
-                <br><h1>Редактирование врачей</h1><br>
-                <div th:each="el : ${post}">
+                <br><h1>Редактирование информации о пациенте</h1><br>
+                <div th:each="el : ${patient}">
                     <form method="post">
-                        <input type="text" th:value="${el.tetle}" name="tetle" placeholder="Введите название статьи" class="form-control"><br>
-                        <input type="text" th:value="${el.anounce}" name="anounce" placeholder="Введите анонс статьи" class="form-control"><br>
-                        <textarea name="full_text"  placeholder="Введите полный текст статьи" class="form-control" th:text="${el.full_text}"/><br>
+                        <input type="text" th:value="${el.fio}" name="fio" placeholder="Введите ФИО пациента" class="form-control"><br>
+                        <input type="text" th:value="${el.male}" name="male" placeholder="Введите пол" class="form-control"><br>
+                        <input type="date" th:value="${el.birth_date}" name="birth_date" placeholder="Введите дату рождения" class="form-control"><br>
+                        <input type="text" th:value="${el.adres}" name="adres" placeholder="Введите адрес" class="form-control"><br>
+                        <input type="text" th:value="${el.polis}" name="polis" placeholder="Введите номер полиса" class="form-control"><br>
                         <button type="submit" class="btn btn-success">Обновить</button>
                     </form>
                 </div>
-
             </div>
         </main>
         <footer class="footer mt-auto py-3 bg-light" th:insert="blocks/footer :: footer"></footer>

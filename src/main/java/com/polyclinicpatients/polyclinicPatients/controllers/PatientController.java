@@ -30,7 +30,7 @@ public class PatientController {
         return "patient-add";
     }
     @PostMapping("/patient/add")
-    public String patientPostAdd(@RequestParam String fio, @RequestParam String male, @RequestParam Date birth_date,  @RequestParam String adres, @RequestParam String polis, Model model){
+    public String patientPostAdd(@RequestParam String fio, @RequestParam String male, @RequestParam String birth_date,  @RequestParam String adres, @RequestParam String polis, Model model){
         Patient patient = new Patient(fio, male, birth_date,adres, polis);
         patientRepository.save(patient);
         return "redirect:/patient";
@@ -59,7 +59,7 @@ public class PatientController {
         return "patient-edit";
     }
     @PostMapping("/patient/{id}/edit")
-    public String doctorPostUpdate(@PathVariable(value = "id") long id,@RequestParam String fio, @RequestParam String male, @RequestParam Date birth_date, @RequestParam String adres, @RequestParam String polis, Model model){
+    public String doctorPostUpdate(@PathVariable(value = "id") long id,@RequestParam String fio, @RequestParam String male, @RequestParam String birth_date, @RequestParam String adres, @RequestParam String polis, Model model){
         Patient patient = patientRepository.findById(id).orElseThrow();
         patient.setFio(fio);
         patient.setMale(male);

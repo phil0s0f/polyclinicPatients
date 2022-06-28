@@ -10,14 +10,16 @@
         <header th:insert="blocks/header :: header"></header>
         <main class="flex-shrink-0">
             <div class="container mt-5">
-                <h1>Список пациентов</h1>
-                <table>
-                    <caption>Список пациентов</caption>
+                <br><h1>Список пациентов</h1>
+                <table class="table">
+                    <!--<caption>Список пациентов</caption>-->
                     <tr>
                         <th>ФИО</th>
                         <th>Пол</th>
                         <th>Дата рождения</th>
-                        <th>Запись к врачу</th>
+                        <th>Подробнее</th>
+                        <th>Изменить</th>
+                        <th>Удалить</th>
                     </tr>
                     <tr th:each="el : ${patients}">
                         <td th:text="${el.fio}"/>
@@ -25,7 +27,15 @@
                         <td th:text="${el.birth_date}"/>
                         <td>
                             <!--Возможно это должно быть в контроллере Visit -->
-                            <a th:href="'/patient/' + ${el.id} + '/appointment'">Запись к врачу</a>
+                            <!--<a th:href="'/patient/' + ${el.id} + '/appointment'">Запись к врачу</a>-->
+                        </td>
+                        <td>
+                            <a th:href="'/patient/' + ${el.id_patient} + '/edit'" class="btn btn-warning">Редактировать</a><br>
+                        </td>
+                        <td>
+                            <form th:action="'/patient/' + ${el.id_patient} + '/remove'" method="post">
+                                <button th:href="'/patient/' + ${el.id_patient} + '/remove'" class="btn btn-warning" type="submit">Удалить</button>
+                            </form>
                         </td>
                     </tr>
                 </table>
