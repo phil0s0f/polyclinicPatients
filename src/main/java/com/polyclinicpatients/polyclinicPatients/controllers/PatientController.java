@@ -51,7 +51,7 @@ public class PatientController {
         return "patient-details";
     }
     @GetMapping("/patient/{id}/edit")
-    public String doctorEdit(@PathVariable(value = "id") long id, Model model) {
+    public String patientEdit(@PathVariable(value = "id") long id, Model model) {
         if (!patientRepository.existsById(id)) {
             return "redirect:/doctor";
         }
@@ -62,7 +62,7 @@ public class PatientController {
         return "patient-edit";
     }
     @PostMapping("/patient/{id}/edit")
-    public String doctorPostUpdate(@PathVariable(value = "id") long id,@RequestParam String fio, @RequestParam String male, @RequestParam String birth_date, @RequestParam String adres, @RequestParam String polis, Model model){
+    public String patientPostUpdate(@PathVariable(value = "id") long id,@RequestParam String fio, @RequestParam String male, @RequestParam String birth_date, @RequestParam String adres, @RequestParam String polis, Model model){
         Patient patient = patientRepository.findById(id).orElseThrow();
         patient.setFio(fio);
         patient.setMale(male);
@@ -73,7 +73,7 @@ public class PatientController {
         return "redirect:/patient";
     }
     @PostMapping("/patient/{id}/remove")
-    public String doctorPostDelete(@PathVariable(value = "id") long id, Model model){
+    public String patientPostDelete(@PathVariable(value = "id") long id, Model model){
         Patient patient = patientRepository.findById(id).orElseThrow();
         patientRepository.delete(patient);
         return "redirect:/patient";

@@ -37,4 +37,22 @@ public class VisitController {
         //TODO: доработать контроллер Visit, не работает добавление записи
         return "redirect:/patient";
     }
+    @GetMapping("/visit")
+    public String patientMain(Model model) {
+        Iterable<Visit> visits = visitRepository.findAll();
+        model.addAttribute("visits", visits);
+        return "visit-main";
+    }
+    @GetMapping("/visit/patient/{id}")
+    public String patientDetails(@PathVariable(value = "id") long id, Model model) {
+        //TODO: возможно это должно быть в контроллере Visit, и показывать данные поциента и насколько он к кому записан
+        if (!patientRepository.existsById(id)) {
+            return "redirect:/patient";
+        }
+        Optional<Visit> visit = visitRepository.findById(id);
+        ArrayList<Visit> res = new ArrayList<>();
+        visit.ifPresent(res::add);
+        model.addAttribute("visit", res);
+        return "visit-patient";
+    }
 }

@@ -27,25 +27,6 @@
                         </div>
                     </div>
                 </div>
-                <br><h1>Записи к врачу</h1>
-                <table class="table">
-                    <tr>
-                        <th>ФИО врача</th>
-                        <th>дата и время</th>
-                        <th>Удалить</th>
-                    </tr>
-
-                    <tr th:each="el : ${visits}">
-                        <td th:text="${el.fio}"/>
-                        <td th:text="${el.spec}"/>
-                        <td>
-                            <form th:action="'/patient/' + ${el.id_doctor} + '/remove'" method="post">
-                                <button th:href="'/patient/' + ${el.id_doctor} + '/remove'" class="btn btn-warning" type="submit">Удалить</button>
-                            </form>
-                        </td>
-                    </tr>
-
-                </table>
             </div>
         </main>
         <footer class="footer mt-auto py-3 bg-light" th:insert="blocks/footer :: footer"></footer>

@@ -17,6 +17,7 @@
                         <th>ФИО</th>
                         <th>Пол</th>
                         <th>Дата рождения</th>
+                        <th>Записи</th>
                         <th>Подробнее</th>
                         <th>Изменить</th>
                         <th>Удалить</th>
@@ -25,6 +26,9 @@
                         <td th:text="${el.fio}"/>
                         <td th:text="${el.male}"/>
                         <td th:text="${el.birth_date}"/>
+                        <td>
+                            <a th:href="'/visit/patient/' + ${el.id_patient}" class="btn btn-warning">Записи</a>
+                        </td>
                         <td>
                             <a th:href="'/patient/' + ${el.id_patient}" class="btn btn-warning">Подробнее</a>
                         </td>
