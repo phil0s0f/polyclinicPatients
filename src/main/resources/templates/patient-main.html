@@ -27,17 +27,17 @@
                         <td th:text="${el.male}"/>
                         <td th:text="${el.birth_date}"/>
                         <td>
-                            <a th:href="'/visit/patient/' + ${el.id_patient}" class="btn btn-warning">Записи</a>
+                            <a th:href="'/visit/patient/' + ${el.idp}" class="btn btn-warning">Записи</a>
                         </td>
                         <td>
-                            <a th:href="'/patient/' + ${el.id_patient}" class="btn btn-warning">Подробнее</a>
+                            <a th:href="'/patient/' + ${el.idp}" class="btn btn-warning">Подробнее</a>
                         </td>
                         <td>
-                            <a th:href="'/patient/' + ${el.id_patient} + '/edit'" class="btn btn-warning">Редактировать</a>
+                            <a th:href="'/patient/' + ${el.idp} + '/edit'" class="btn btn-warning">Редактировать</a>
                         </td>
                         <td>
-                            <form th:action="'/patient/' + ${el.id_patient} + '/remove'" method="post">
-                                <button th:href="'/patient/' + ${el.id_patient} + '/remove'" class="btn btn-warning" type="submit">Удалить</button>
+                            <form th:action="'/patient/' + ${el.idp} + '/remove'" method="post">
+                                <button th:href="'/patient/' + ${el.idp} + '/remove'" class="btn btn-warning" type="submit">Удалить</button>
                             </form>
                         </td>
                     </tr>

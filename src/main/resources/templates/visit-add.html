@@ -35,15 +35,16 @@
                 <form action="/visit/add" method="post">
                     <select class="form-select select-doctor">
                         <option selected> </option>
-                        <option  th:each="el : ${doctors}" th:value="${el.id_doctor}" th:text="${el.spec} + ' ' + ${el.fio}" />
+                        <option  th:each="el : ${doctors}" th:value="${el.idd}" th:text="${el.spec} + ' ' + ${el.fio}" />
                     </select><br>
                     <select class="form-select select-patient" >
                         <option selected> </option>
-                        <option th:each="el : ${patients}" th:value="${el.id_patient}" th:text="${el.fio}" />
+                        <option th:each="el : ${patients}" th:value="${el.idp}" th:text="${el.fio}" />
                     </select><br>
-                    <input type="hidden" name="id_patient" id="id_patient"/>
-                    <input type="hidden" name="id_doctor" id="id_doctor"/>
-                    <input type="text" name="date_visit" placeholder="Введите дату и время записи" class="form-control"><br>
+                    <input type="hidden" name="idp" id="id_patient"/>
+                    <input type="hidden" name="idd" id="id_doctor"/>
+                    <input type="date" name="date_visit" placeholder="Введите дату записи" class="form-control"><br>
+                    <input type="time" name="time_visit" placeholder="Введите время записи" class="form-control"><br>
                     <button type="submit" class="btn btn-success">Записать</button>
                 </form>
             </div>

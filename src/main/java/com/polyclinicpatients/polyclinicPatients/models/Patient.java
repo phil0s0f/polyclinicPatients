@@ -8,7 +8,7 @@ import java.util.Set;
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_patient;
+    private Long idp;
     private String fio;
     private String male;
     //private Date birth_date;
@@ -28,12 +28,11 @@ public class Patient {
         this.polis = polis;
     }
     //TODO: сделать связь с моделью Visit 1:N
-
-    public Long getId_patient() {
-        return id_patient;
+    public Long getIdp() {
+        return idp;
     }
-    public void setId_patient(Long id_patient) {
-        this.id_patient = id_patient;
+    public void setIdp(Long idp) {
+        this.idp = idp;
     }
     public String getFio() {
         return fio;

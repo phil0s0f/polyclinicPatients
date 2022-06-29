@@ -11,6 +11,7 @@ public class Visit {
     //private Long id_patient;
     //private Long id_doctor;
     private String date_visit;
+    private String time_visit;
     //@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @ManyToOne(fetch = FetchType.EAGER)
     private Patient patient;
@@ -20,10 +21,19 @@ public class Visit {
     public Visit() {
     }
 
-    public Visit(String date_visit, Patient patient, Doctor doctor) {
+    public Visit(String date_visit, String time_visit, Patient patient, Doctor doctor) {
         this.date_visit = date_visit;
+        this.time_visit = time_visit;
         this.patient = patient;
         this.doctor = doctor;
+    }
+
+    public String getTime_visit() {
+        return time_visit;
+    }
+
+    public void setTime_visit(String time_visit) {
+        this.time_visit = time_visit;
     }
 
     //TODO: добавить конструкторы

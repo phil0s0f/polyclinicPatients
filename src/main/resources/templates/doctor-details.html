@@ -14,11 +14,11 @@
                     <h3 th:text="${el.spec} + ' ' + ${el.fio}"/>
                     <div class="row justify-content-start">
                         <div class="col-2">
-                            <a th:href="'/doctor/' + ${el.id_doctor} + '/edit'" class="btn btn-warning">Редактировать</a>
+                            <a th:href="'/doctor/' + ${el.idd} + '/edit'" class="btn btn-warning">Редактировать</a>
                         </div>
                         <div class="col-2">
-                            <form th:action="'/doctor/' + ${el.id_doctor} + '/remove'" method="post">
-                                <button th:href="'/doctor/' + ${el.id_doctor} + '/remove'" class="btn btn-warning" type="submit">Удалить</button>
+                            <form th:action="'/doctor/' + ${el.idd} + '/remove'" method="post">
+                                <button th:href="'/doctor/' + ${el.idd} + '/remove'" class="btn btn-warning" type="submit">Удалить</button>
                             </form>
                         </div>
                     </div>
@@ -27,20 +27,20 @@
                 <table class="table">
                     <tr>
                         <th>ФИО пациента</th>
-                        <th>дата и время</th>
+                        <th>Дата записи</th>
+                        <th>Время записи</th>
                         <th>Удалить</th>
                     </tr>
-                    <!--
-                    <tr th:each="el : ${doctors}">
-                        <td th:text="${el.fio}"/>
-                        <td th:text="${el.spec}"/>
+                    <tr th:each="el : ${visit}">
+                        <td th:text="${el.patient.fio}"/>
+                        <td th:text="${el.date_visit}"/>
+                        <td th:text="${el.time_visit}"/>
                         <td>
-                            <form th:action="'/patient/' + ${el.id_doctor} + '/remove'" method="post">
-                                <button th:href="'/patient/' + ${el.id_doctor} + '/remove'" class="btn btn-warning" type="submit">Удалить</button>
+                            <form th:action="'/visit/' + ${el.id_visit} + '/remove'" method="post">
+                                <button th:href="'/visit/' + ${el.id_visit} + '/remove'" class="btn btn-warning" type="submit">Удалить</button>
                             </form>
                         </td>
                     </tr>
-                    -->
                 </table>
             </div>
         </main>

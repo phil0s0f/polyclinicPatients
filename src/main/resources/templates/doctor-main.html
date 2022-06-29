@@ -23,14 +23,14 @@
                         <td th:text="${el.fio}"/>
                         <td th:text="${el.spec}"/>
                         <td>
-                            <a th:href="'/doctor/' + ${el.id_doctor}" class="btn btn-warning">Подробнее</a>
+                            <a th:href="'/doctor/' + ${el.idd}" class="btn btn-warning">Подробнее</a>
                         </td>
                         <td>
-                            <a th:href="'/doctor/' + ${el.id_doctor} + '/edit'" class="btn btn-warning">Редактировать</a>
+                            <a th:href="'/doctor/' + ${el.idd} + '/edit'" class="btn btn-warning">Редактировать</a>
                         </td>
                         <td>
-                            <form th:action="'/doctor/' + ${el.id_doctor} + '/remove'" method="post">
-                                <button th:href="'/doctor/' + ${el.id_doctor} + '/remove'" class="btn btn-warning" type="submit">Удалить</button>
+                            <form th:action="'/doctor/' + ${el.idd} + '/remove'" method="post">
+                                <button th:href="'/doctor/' + ${el.idd} + '/remove'" class="btn btn-warning" type="submit">Удалить</button>
                             </form>
                         </td>
                     </tr>

@@ -6,9 +6,10 @@ import java.util.Set;
 @Entity
 @Table(name = "doctor")
 public class Doctor {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_doctor;
+    private Long idd;
     private String fio;
     private String spec;
     /*@OneToMany(fetch = FetchType.EAGER,mappedBy = "patient")
@@ -21,11 +22,11 @@ public class Doctor {
         this.spec = spec;
     }
     //TODO: сделать связь с моделью Visit 1:N (возможно не нужна)
-    public Long getId_doctor() {
-        return id_doctor;
+    public Long getIdd() {
+        return idd;
     }
-    public void setId_doctor(Long id_doctor) {
-        this.id_doctor = id_doctor;
+    public void setIdd(Long idd) {
+        this.idd = idd;
     }
     public String getFio() {
         return fio;

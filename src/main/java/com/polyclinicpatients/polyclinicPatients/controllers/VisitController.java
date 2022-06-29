@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -31,8 +32,8 @@ public class VisitController {
         return "visit-add";
     }
     @PostMapping("/visit/add")
-    public String visitPostAdd(@RequestBody String date_visit, Patient patient, Doctor doctor, Model model){
-        Visit visit = new Visit(date_visit, patient, doctor);
+    public String visitPostAdd(@RequestParam String date_visit, @RequestParam String time_visit, Patient patient, Doctor doctor, Model model){
+        Visit visit = new Visit(date_visit,time_visit, patient, doctor);
         visitRepository.save(visit);
         //TODO: доработать контроллер Visit, не работает добавление записи
         return "redirect:/patient";
@@ -49,10 +50,14 @@ public class VisitController {
         if (!patientRepository.existsById(id)) {
             return "redirect:/patient";
         }
-        Optional<Visit> visit = visitRepository.findById(id);
-        ArrayList<Visit> res = new ArrayList<>();
-        visit.ifPresent(res::add);
-        model.addAttribute("visit", res);
+        List<Visit> visit = visitRepository.findByPatient_Idp(id);
+        model.addAttribute("visit", visit);
         return "visit-patient";
+    }
+    @PostMapping("/visit/{id}/remove")
+    public String patientPostDelete(@PathVariable(value = "id") long id, Model model){
+        Visit visit = visitRepository.findById(id).orElseThrow();
+        visitRepository.delete(visit);
+        return "redirect:/visit";
     }
 }

@@ -1,19 +1,24 @@
 package com.polyclinicpatients.polyclinicPatients.controllers;
 
 import com.polyclinicpatients.polyclinicPatients.models.Doctor;
+import com.polyclinicpatients.polyclinicPatients.models.Visit;
 import com.polyclinicpatients.polyclinicPatients.rep.DoctorRepository;
+import com.polyclinicpatients.polyclinicPatients.rep.VisitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class DoctorController {
     @Autowired
     private DoctorRepository doctorRepository;
+    @Autowired
+    private VisitRepository visitRepository;
     @GetMapping("/doctor")
     public String doctorMain(Model model) {
         Iterable<Doctor> doctors = doctorRepository.findAll();
@@ -39,6 +44,8 @@ public class DoctorController {
         ArrayList<Doctor> res = new ArrayList<>();
         doctor.ifPresent(res::add);
         model.addAttribute("doctor", res);
+        List<Visit> visit = visitRepository.findByDoctor_Idd(id);
+        model.addAttribute("visit", visit);
         return "doctor-details";
     }
     @GetMapping("/doctor/{id}/edit")
